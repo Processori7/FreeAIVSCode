@@ -1,0 +1,80 @@
+{
+  "name": "free-ai-tools",
+  "displayName": "Free AI Tools",
+  "description": "Бесплатные инструменты ИИ для разработчиков. Доступ к множеству AI сервисов прямо из VS Code.",
+  "version": "1.0.0",
+  "publisher": "Processor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Processori7/FreeAIVSCode.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:freeAIToolsView",
+    "onCommand:extension.openFreeAITools"
+  ],
+  "main": "./out/extension.js",
+  "icon": "src/resources/icon.png",
+  "galleryBanner": {
+    "color": "#242582",
+    "theme": "dark"
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "free-ai-tools-sidebar",
+          "title": "Free AI Tools",
+          "icon": "src/resources/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "free-ai-tools-sidebar": [
+        {
+          "id": "freeAIToolsView",
+          "name": "Free AI Tools",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "extension.openFreeAITools",
+        "title": "Open Free AI Tools"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.119",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^4.9.4",
+    "vsce": "^1.97.0"
+  },
+  "keywords": [
+    "ai",
+    "artificial intelligence",
+    "chatgpt",
+    "claude",
+    "gemini",
+    "free",
+    "tools",
+    "assistant",
+    "coding",
+    "development",
+    "productivity"
+  ],
+  "license": "MIT"
+}
+
