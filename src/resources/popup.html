@@ -169,16 +169,19 @@
 	<div class="menu-container">
 		<label for="menu-toggle" class="menu-label">⚙️</label>
 		<input type="checkbox" id="menu-toggle" class="menu-toggle" />
-<div class="dropdown" id="dropdown-menu">
+        <div class="dropdown" id="dropdown-menu">
             <input id="searchInput" type="text" class="search-input" placeholder="Search...">
             <div class="dropdown-item">
-				<input type="checkbox" id="openInNewTab" class="popup-chackbox"><label class="dropdown-label">Open in a new browser tab</label>
+				<input type="checkbox" id="openInNewTab" class="popup-chackbox"><label class="dropdown-label">Open in a new tab.</label>
 			</div>
             <div class="dropdown-item">
-				<input type="checkbox" id="favoriteCheckbox" class="popup-chackbox"><label>Add to favorites</label>
+				<input type="checkbox" id="favoriteCheckbox" class="popup-chackbox"><label>Add to favorites.</label>
 			</div>
 			<div class="dropdown-item">
-				<input type="checkbox" id="openOnRightClick" class="popup-chackbox"> Open the site in a new browser tab when right-clicking
+				<input type="checkbox" id="scrollToElement" class="popup-chackbox"> Scroll to the last selected item
+			</div>
+			<div class="dropdown-item">
+				<input type="checkbox" id="openOnRightClick" class="popup-chackbox"> Open the site in a new tab when right-clicking
 			</div>
 			<div class="dropdown-item">
 				<input type="checkbox" id="copyOnRightClick" class="popup-chackbox"> Copy link when right-clicking
@@ -192,20 +195,7 @@
 			<div class="dropdown-item">
 				<input type="checkbox" id="canOpen" class="popup-chackbox"> Show only services that can be opened in side panel
 			</div>
-            <div class="dropdown-item">
-                <label for="langSelect"></label>
-                <select id="langSelect" class="lang-dropdown">
-                  <option value="en-US">English (US)</option>
-                  <option value="ru-RU">Русский</option>
-                  <option value="de-DE">Deutsch</option>
-                  <option value="fr-FR">Français</option>
-                  <option value="es-ES">Español</option>
-                  <option value="zh-CN">中文</option>
-                  <option value="ja-JP">日本語</option>
-				  <option value="ko-KR">한국어</option>
-                </select>
-            </div>
-            <!-- Здесь мы выведем количество li элементов -->
+			<!-- Здесь мы выведем количество li элементов -->
         <div id="liCount" class="dropdown-item"></div>
         </div>
     </div>
@@ -427,6 +417,7 @@
 	<li data-website="https://www.eraser.io/diagramgpt">Diagramgpt</li>
 	<li data-website="https://www.hotbot.com/chat">Hotbot</li>
 	<li data-website="https://letmegpt.com/">Letmegpt</li>
+	<li data-website="https://www.promptcannon.com/">Promptcannon (login)</li>
     <li data-website="https://ya.ru/">Yandex GPT</li>
     <li data-website="https://talkai.info/ru/">TalkAi</li>
 	<li data-website="https://ai.mitup.ru/chatgpt-free">AI Mitup</li>
@@ -445,6 +436,7 @@
 	<li data-website="https://noowai.com/">Noowai</li>
 	<li data-website="https://www.bohrium.com/">Bohrium</li>
 	<li data-website="https://chat.typegpt.net/">Typegpt</li>
+	<li data-website="https://huggingface.co/spaces/llamameta/Grok-4-heavy-free">Grok-4 Heavy</li>
 	<li data-website="https://chatgpt-clone-ten-nu.vercel.app">Clone GPT</li>
 	<li data-website="https://chat.writingmate.ai/chat">Writingmate (login)</li>
 	<li data-website="https://explorer.globe.engineer/">Globe Explorer</li>
@@ -747,6 +739,7 @@
 	<li data-website="https://www.orchids.app/">Orchids (login)</li>
 	<li data-website="https://transcribetext.com/">Transcribetext</li>
 	<li data-website="https://app.twaingpt.com/">Twaingpt (login)(Humanizer)</li>
+	<li data-website="https://noiz.io/free-ai-tools/">Noiz (Tools)(Humanizer)</li>
   </ul>
 </div>
   <span class="snowman" id="snowman"></span>
