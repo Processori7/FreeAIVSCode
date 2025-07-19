@@ -305,7 +305,7 @@ async function checkForUpdates() {
     const repoUrl = "https://api.github.com/repos/Processori7/FreeAIVSCode/contents/package.json";
     
     // Получаем локальную версию из manifest.json расширения
-    const localVersion = "1.0.0"; 
+    const localVersion = "1.0.2"; 
     const updateMessageElement = document.getElementById('update-message');
     
     try {

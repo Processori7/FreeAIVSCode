@@ -1,8 +1,8 @@
 {
   "name": "free-ai-tools",
   "displayName": "Free AI Tools",
-  "description": "Бесплатные инструменты ИИ для разработчиков. Доступ к множеству AI сервисов прямо из VS Code.",
-  "version": "1.0.1",
+  "description": "Free AI tools for developers. Access to a variety of AI services directly from VS Code.",
+  "version": "1.0.2",
   "publisher": "Processor",
   "repository": {
     "type": "git",
