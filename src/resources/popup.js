@@ -305,7 +305,7 @@ async function checkForUpdates() {
     const repoUrl = "https://api.github.com/repos/Processori7/FreeAIVSCode/contents/package.json";
     
     // Получаем локальную версию из manifest.json расширения
-    const localVersion = "1.0.5"; 
+    const localVersion = "1.0.6"; 
     const updateMessageElement = document.getElementById('update-message');
     
     try {
@@ -1224,8 +1224,10 @@ try {
       "https://deep-seek-ai.ru/free-deepseek-chat/":"Сервис предоставляет доступ к различным LLM",
       "https://gpt-chatbot.ru/openai-o3-mini":"Сервис предоставляет доступ к различным LLM",
       "https://webos.live/":"Достаточно интересный проект операциионной системы с внедренным ИИ агентом, проект еще разрабатывается, некоторые функции могут не работать",
-      "https://huggingface.co/spaces/Qwen/Qwen3-MT-Demo":"Переводчик от Qwen"
-  };   
+      "https://huggingface.co/spaces/Qwen/Qwen3-MT-Demo":"Переводчик от Qwen",
+      "https://pollinations.ai/":"Бесплатный сервис, который предоставляет доступ к различным LLM, доступ к генерации фото и чату можно получить сразу на главной странице",
+      "https://writify.ai/tool/":"Множество бесплатных инструментов с ИИ"
+  };  
           
   function applyTheme(backgroundColor, textColor, liColor, liTextColor) {
     try {
