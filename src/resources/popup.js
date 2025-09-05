@@ -305,21 +305,31 @@ NewYearTheme.addEventListener("change", updateTheme);
 async function checkForUpdates() {
     const repoUrl = "https://api.github.com/repos/Processori7/FreeAIVSCode/contents/package.json";
     
-    // Получаем локальную версию из manifest.json расширения
-    const localVersion = "1.0.7"; 
+    // Получаем локальную версию через VS Code API
+    const localVersion = await getLocalVersion();
+    // vscode.postMessage({ command: 'log', text: "Локальная версия: " + localVersion });
+    if (!localVersion) {
+        vscode.postMessage({ command: 'log', text: "Не удалось получить локальную версию расширения"});
+        return;
+    }
+
     const updateMessageElement = document.getElementById('update-message');
-    
+    if (!updateMessageElement) return;
+
     try {
         const response = await fetch(repoUrl);
+        if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        
         const data = await response.json();
         
-        // Декодируем содержимое файла manifest.json
-        const manifestContent = JSON.parse(atob(data.content));
-        const remoteVersion = manifestContent.version; // Извлекаем версию из полученного манифеста
+        // Декодируем содержимое package.json с GitHub
+        const packageContent = JSON.parse(atob(data.content));
+        const remoteVersion = packageContent.version;
+        // vscode.postMessage({ command: 'log', text: "Последняя версия: " + remoteVersion });
 
-        // Сравниваем локальную версию с удаленной версией
+        // Сравниваем версии
         if (localVersion !== remoteVersion) {
-            // Если версии не совпадают, показываем сообщение
+            // Показываем сообщение об обновлении
             if (userLang.startsWith('ru')) {
                 updateMessageElement.textContent = updateText;
             } else {
@@ -327,15 +337,34 @@ async function checkForUpdates() {
             }
             updateMessageElement.style.display = 'block';
 
-            // Добавляем обработчик клика на сообщение
+            // Обработчик клика — открываем ссылку на GitHub
             updateMessageElement.onclick = function() {
-                vscode.postMessage({command: 'openLink', url: "https://github.com/Processori7/FreeAIVSCode"});
-                updateMessageElement.style.display = 'none'; // Скрываем сообщение после клика
+                vscode.postMessage({ command: 'openLink', url: "https://github.com/Processori7/FreeAIVSCode" });
+                updateMessageElement.style.display = 'none';
             };
         }
     } catch (error) {
         console.error("Ошибка при проверке обновлений:", error);
     }
+}
+
+// Функция для получения версии расширения из VS Code
+function getLocalVersion() {
+    return new Promise((resolve) => {
+        // Отправляем запрос на получение версии
+        vscode.postMessage({ command: 'getVersion' });
+
+        // Слушаем ответ от расширения
+        const handler = (event) => {
+            const message = event.data;
+            if (message.command === 'versionResponse') {
+                window.removeEventListener('message', handler);
+                resolve(message.version);
+            }
+        };
+
+        window.addEventListener('message', handler);
+    });
 }
 
  // Обработчик клика по кнопке основного меню
@@ -1245,7 +1274,11 @@ try {
       "https://www.wolframalpha.com/":"Сервис для решения математических задач",
       "https://www.kimi.com/kimiplus/cvvm7bkheutnihqi2100":"Генератор презентаций от Kimi AI, требуется авторизация",
       "https://revast.xyz/":"Сервис для создания интерактивных учебников, есть бесплатный план, требуется авторизация",
-      "https://Kira.art":"Сервис для работы с изображениями, есть бесплатный план, требуется авторизация"
+      "https://Kira.art":"Сервис для работы с изображениями, есть бесплатный план, требуется авторизация",
+      "https://ebank.nz/aiartgenerator":"Бесплатный сервис для генерации изображений, поддерживает различные стили",
+      "https://www.texttospeechpro.com/tts":"Сервис для озвучивания текста",
+      "https://x-minus.pro/ai":"Сервис предлагает набор аудиоинструментов с ИИ",
+      "https://postspark.app/screenshot":"Сервис в котором можно быстро собрать красивый дизайн, макет или скриншот проекта"
   };   
           
   function applyTheme(backgroundColor, textColor, liColor, liTextColor) {

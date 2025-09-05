@@ -72,6 +72,16 @@ class FreeAIToolsViewProvider {
                     // this._view.webview.html = this._getHtmlForWebview(this._view.webview);
                     // }
                     break;
+                case 'getVersion':
+                    // Отправляем обратно версию из package.json расширения
+                    webviewView.webview.postMessage({
+                        command: 'versionResponse',
+                        version: this._context.extension.packageJSON.version
+                    });
+                    break;
+                case 'log':
+                    console.log("[WebView Log]:", message.text);
+                    break;
             }
         });
     }
@@ -278,7 +288,7 @@ function adaptJavaScriptForVSCode(js) {
     // Заменяем window.open на vscode.postMessage для открытия ссылок
     js = js.replace(/window\.open\(([^,]+),\s*['\"]_blank['\"]\)/g, 'vscode.postMessage({command: "openLink", url: $1})');
     // Удаляем fetch запросы для обновлений (они не работают в VSCode webview)
-    js = js.replace(/async function checkForUpdates\(\)[\s\S]*?\}/g, 'function checkForUpdates() { /* disabled in VSCode */ }');
+    //js = js.replace(/async function checkForUpdates\(\)[\s\S]*?\}/g, 'function checkForUpdates() { /* disabled in VSCode */ }');
     // Заменяем httpGet на заглушку (для переводов)
     js = js.replace(/function httpGet\([^}]*\}[^}]*\}/g, 'function httpGet(url) { return "[Translation not available in VSCode]"; }');
     // Добавляем обработку сообщений для VSCode
