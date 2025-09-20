@@ -170,7 +170,10 @@
 		<label for="menu-toggle" class="menu-label">⚙️</label>
 		<input type="checkbox" id="menu-toggle" class="menu-toggle" />
         <div class="dropdown" id="dropdown-menu">
-            <input id="searchInput" type="text" class="search-input" placeholder="Search...">
+            <div class="search-container">
+                <input id="searchInput" type="text" class="search-input" placeholder="Search...">
+                <div id="searchSuggestions" class="search-suggestions"></div>
+            </div>
             <div class="dropdown-item">
 				<input type="checkbox" id="openInNewTab" class="popup-chackbox"><label class="dropdown-label">Open in a new tab.</label>
 			</div>
@@ -209,7 +212,7 @@
         <div id="liCount" class="dropdown-item"></div>
         </div>
     </div>
-	<div class="header-menu-container">
+		<div class="header-menu-container">
 		<button id="header-menu-toggle" class="menu-list">📑</button>
 		<button id="theme-menu-toggle" class="menu-list">🎨</button>
 		<div id="header-dropdown-menu" class="header-dropdown-menu">
@@ -233,13 +236,57 @@
 				<div class="color-picker-group">
 					<label id="li-back-color">
 						<span class="translate-text">The background color of the items:</span>
-						<input type="color" id="liColorPicker" value="#ffffff">
+						<input type="color" id="liColorPicker" value="#70040e">
 					</label>
 				</div>
 				<div class="color-picker-group">
 					<label id="li-text-color">
 						<span class="translate-text">The color of the text of the items:</span>
-						<input type="color" id="liTextColorPicker" value="#000000">
+						<input type="color" id="liTextColorPicker" value="#ffffff">
+					</label>
+				</div>
+				<div class="color-picker-group">
+					<label id="tooltip-background-color">
+						<span class="translate-text">Tooltip background color:</span>
+						<input type="color" id="tooltipBgColorPicker" value="#333333">
+					</label>
+				</div>
+				<div class="font-settings-group">
+					<label id="font-family-settings">
+						<span class="translate-text">Font family:</span>
+						<select id="fontFamilySelect">
+							<option value="'Droid serif', serif">Droid Serif</option>
+							<option value="Arial, sans-serif">Arial</option>
+							<option value="'Times New Roman', serif">Times New Roman</option>
+							<option value="'Courier New', monospace">Courier New</option>
+							<option value="'Georgia', serif">Georgia</option>
+							<option value="'Verdana', sans-serif">Verdana</option>
+							<option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+							<option value="'Impact', fantasy">Impact</option>
+							<option value="'Roboto', fantasy">Roboto</option>
+							<option value="'Consolas', monospace">Consolas</option>
+						</select>
+					</label>
+				</div>
+				<div class="size-settings-group">
+					<label id="heading-font-size">
+						<span class="translate-text">Heading font size:</span>
+						<input type="range" id="headingFontSize" min="20" max="50" value="32">
+						<span id="headingFontSizeValue">32px</span>
+					</label>
+				</div>
+				<div class="size-settings-group">
+					<label id="item-font-size">
+						<span class="translate-text">Item font size:</span>
+						<input type="range" id="itemFontSize" min="10" max="32" value="16">
+						<span id="itemFontSizeValue">16px</span>
+					</label>
+				</div>
+				<div class="size-settings-group">
+					<label id="tooltip-font-size">
+						<span class="translate-text">Tooltip font size:</span>
+						<input type="range" id="tooltipFontSize" min="10" max="32" value="14">
+						<span id="tooltipFontSizeValue">14px</span>
 					</label>
 				</div>
 				<button id="resetTheme"><span class="translate-text">Reset theme</span></button>
@@ -614,6 +661,7 @@
 	<li data-website="https://Kira.art">Kira (login)</li>
 	<li data-website="https://ebank.nz/aiartgenerator">Aiartgenerator</li>
 	<li data-website="https://postspark.app/screenshot">Postspark</li>
+	<li data-website="https://app.reve.com/home">Reve(login)</li>
   </ul>
   <h1 id="aiVideo">Free AI Video Services</h1>
   <ul class="aiMenu">
@@ -651,6 +699,7 @@
 	<li data-website="https://runway.exomlapi.com/">Runway.exomlapi</li>
 	<li data-website="https://animateai.pro/">Animateai (login)</li>
 	<li data-website="https://lipsync.video/">Lipsync</li>
+	<li data-website="https://platform.decart.ai/">Decart (login)</li>
   </ul>
   <h1 id="aiPresentation">Free AI Presentation Generators</h1>
   <ul class="aiMenu">
@@ -681,6 +730,9 @@
 	<li data-website="https://www.wondera.ai/">Wondera (login)</li>
 	<li data-website="https://www.texttospeechpro.com/tts">Texttospeechpro</li>
 	<li data-website="https://x-minus.pro/ai">X-minus</li>
+	<li data-website="https://www.naturalreaders.com/online/">Naturalreaders</li>
+	<li data-website="https://lovevoice.ai/">Lovevoice</li>
+	<li data-website="https://speechma.com/">Speechma</li>
   </ul>
   <h1 id="aiTODO">Free AI TODO Services</h1>
   <ul class="aiMenu">
@@ -689,6 +741,7 @@
   </ul>
   <h1 id="aiOther">Other AI Services</h1>
   <ul class="aiMenu">
+	<li data-website="https://processor.alwaysdata.net/">Free AI Services Site</li>
     <li data-website="https://www.fontspace.com/">Fontspace</li>
 	<li data-website="https://www.gling.ai/">Gling</li>
 	<li data-website="https://copilot2trip.com/">Copilot2trip</li>
@@ -780,6 +833,8 @@
 	<li data-website="https://qwenlm.github.io/blog/qwen3-coder/">Qwen Coder Cli (install)(login)</li>
 	<li data-website="https://revast.xyz/">Revast(login)</li>
 	<li data-website="https://www.chatslide.ai/#features">Chatslide(login)</li>
+	<li data-website="https://www.anysummary.app/">Anysummary</li>
+	<li data-website="https://www.meshy.ai/">Meshy(login)</li>
   </ul>
 </div>
   <span class="snowman" id="snowman"></span>

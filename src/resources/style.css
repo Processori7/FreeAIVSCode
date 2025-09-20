@@ -227,6 +227,55 @@
         color: white;
     }
     
+    .search-container {
+        position: relative;
+        width: 100%;
+    }
+    
+    .search-suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        color:yellow;
+        background-color: #333333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        display: none;
+    }
+    
+    .suggestion-item {
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid yellow;
+        font-size: 14px;
+        transition: background-color 0.2s;
+    }
+    
+    .suggestion-item:hover {
+        background-color: #70040e;
+        color: #ffde22;
+        font-weight: bold;
+        border-left: 4px solid #ffde22;
+        box-shadow: 0 0 5px rgba(255, 222, 34, 0.5);
+    }
+    
+    .suggestion-item:last-child {
+        border-bottom: none;
+        color: yellow;
+    }
+    
+    .suggestion-item.selected {
+        background-color: #70040e;
+        color: #ffde22;
+        font-weight: bold;
+        border-left: 4px solid #ffde22;
+        box-shadow: 0 0 5px rgba(255, 222, 34, 0.5);
+    }
+    
     .header-menu-container {
       position: fixed;
       top: 50%;
@@ -260,22 +309,6 @@
       z-index: 3;
   }
 
-.lang-dropdown {
-  width: 90%;
-  padding: 6px 8px;
-  margin: 6px 0;
-  border-radius: 5px;
-  border: 1px solid #CCC;
-  background: #fff4f3;
-  color: #70040e;
-  font-size: 14px;
-  outline: none;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  transition: border-color 0.2s;
-}
-.lang-dropdown:focus {
-  border-color: #3F8FD2;
-}
   
   .header-dropdown {
     border: 1px solid #ccc;
@@ -365,10 +398,12 @@
       padding: 5px;
       border-radius: 4px;
       border: 1px solid #ccc;
+      background-color: white;
+      color: #333;
   }
   
   input[type="range"] {
-      width: 150px;
+      width: 100px;
       margin: 0 10px;
   }
   
@@ -403,9 +438,14 @@
   #fontSizeValue,
   #itemWidthValue,
   #itemHeightValue,
-  #borderWidthValue {
+  #borderWidthValue,
+  #headingFontSizeValue,
+  #itemFontSizeValue,
+  #tooltipFontSizeValue {
       min-width: 45px;
       text-align: right;
+      font-weight: bold;
+      color: #ffde22;
   }
   
   /* Theme Menu Styles */
