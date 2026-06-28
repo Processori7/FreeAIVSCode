@@ -81,49 +81,63 @@ document.addEventListener("DOMContentLoaded", function () {
   // массив для кэширования переведённых описаний
   let userLangDesc = [];
   
-  let blockSites = ["https://duck.ai/","https://www.phind.com","https://www.perplexity.ai/","https://github.com/IridiumIO/CompactGUI",
-    "https://chat.tune.app/", "https://labs.perplexity.ai/", "https://huggingface.co/spaces/Qwen/Qwen2-72B-Instruct","https://github.com/blader/humanizer-ai-text",
-    "https://you.com/search?q=hi&fromSearchBar=true&tbm=youchat", "https://finechat.ai/ru/app", "https://iask.ai/", "https://ai.io.net/ai/app/new",
-    "https://chatgptchatapp.com", "https://chat.chatgptdemo.net", "https://promptboom.com/PowerChat/PowerChatTalk","https://tokenfactory.nebius.com/playground",
-    "https://chat.mistral.ai/chat", "https://share.wendaalpha.net", "https://chat.swt-ai.com/", "https://groq.com/", "https://skillsmp.com/",
-    "https://ya.ru/", "https://codepal.ai/", "https://t.me/EdyaAIrobot", "https://github.com/KudoAI/googlegpt","https://github.com/IridiumIO/CompactGUI",
-    "https://github.com/KudoAI/duckduckgpt", "https://github.com/KudoAI/bravegpt", "https://github.com/Processori7/llm/releases",
-    "https://perchance.org/ai-text-to-image-generator", "https://dewatermark.ai/ru", "https://pika.art/login", "https://github.com/blader/humanizer-ai-text",
-    "ttps://huggingface.co/spaces/ehristoforu/dalle-3-xl-lora-v2", "https://www.veed.io/", "https://gamma.app/",
-    "https://slidesgo.com/", "https://hidola.ai/en", "https://gpt-chatbot.ru/chat-gpt-ot-openai-dlya-generacii-teksta",
-    "https://huggingface.co/spaces/stabilityai/stable-diffusion-3-medium", "https://huggingface.co/spaces/mukaist/DALLE-4K", "https://huggingface.co/spaces/Xenova/whisper-webgpu",
-    "https://huggingface.co/spaces/THUDM/CodeGeeX", "https://huggingface.co/spaces/gokaygokay/Kolors", "https://www.craiyon.com/","https://simplified.com/",
-    "https://elevenlabs.io/","https://huggingface.co/spaces/KwaiVGI/LivePortrait","https://character.ai","https://ltx.studio", "https://www.hedra.com/",
-    "https://huggingface.co/spaces/TencentARC/PhotoMaker-Style", "https://app.scenario.com/upscale", "https://easywithai.com/tools/vidiq", 
-    "https://smartbuddy.ru/models/gpt-4-omni", "https://smartbuddy.ru/models/gpt-4o-mini", "https://huggingface.co/spaces/Xenova/whisper-word-level-timestamps",
-    "https://huggingface.co/spaces/gokaygokay/Tile-Upscaler", "https://github.com/Anjok07/ultimatevocalremovergui/releases", "https://huggingface.co/spaces/yizhezhu/MoMA_zeroGPU",
-    "https://klingai.com/", "https://huggingface.co/spaces/lllyasviel/IC-Light", "https://huggingface.co/spaces/gokaygokay/AuraSR-v2","https://huggingface.co/spaces/finegrain/finegrain-object-eraser",
-    "https://huggingface.co/spaces/finegrain/finegrain-image-enhancer", "https://huggingface.co/spaces/multimodalart/flux-lora-the-explorer", "https://huggingface.co/spaces/Kwai-Kolors/Kolors-Virtual-Try-On",
-    "https://github.com/ToonCrafter/ToonCrafter","https://github.com/captainzero93/Protect-Images-from-AI-PixelGuard#","https://labs.heygen.com/expressive-photo-avatar", "https://elevenlabs.io/dubbing",
-    "https://huggingface.co/spaces/GanymedeNil/Qwen2-VL-7B","https://huggingface.co/spaces/finegrain/finegrain-object-cutter","https://huggingface.co/spaces/yanze/PuLID-FLUX","https://seapik.com/",
-    "https://huggingface.co/jasperai/Flux.1-dev-Controlnet-Upscaler","https://huggingface.co/spaces/fffiloni/diffusers-image-outpaint","https://www.figma.com/community/plugin/1326990370920029683/figma-to-replit",
-    "https://tinywow.com/tools/write","https://huggingface.co/spaces/DamarJati/FLUX.1-RealismLora","https://yce.perfectcorp.com/colorize","https://venice.ai/chat","https://huggingface.co/chat/","https://app.giz.ai/assistant?mode=chat",
-    "https://huggingface.co/spaces/OzzyGT/diffusers-image-fill","https://app.myshell.ai/explore","https://huggingface.co/spaces/TheEeeeLin/HivisionIDPhotos","https://huggingface.co/spaces/fffiloni/expression-editor","https://komo.ai/","https://pythonspath.ru/gpt4o",
-    "https://huggingface.co/spaces/kayfahaarukku/fufufafa-makan-brem","https://gpt-4o.biz/playground","https://gpt4o.so/ru/app","https://rubiks.ai/","https://julius.ai/ai-chatbot","https://chat.eqing.tech/","https://ai.mitup.ru/chatgpt-free","https://magictellers.com/",
-    "https://tools.rotato.app/compress","https://huggingface.co/spaces/aifeifei798/FeiFei-Lora-8step","https://www.eraser.io/diagramgpt","https://huggingface.co/spaces/AI4Editing/MagicQuill","https://www.askmarcus.app/chat", "https://huggingface.co/spaces/fffiloni/text-guided-image-colorization",
-    "https://huggingface.co/spaces/aifeifei798/FeiFei-Lora-8step","https://www.eraser.io/diagramgpt","https://www.askmarcus.app/chat", "https://huggingface.co/spaces/fffiloni/text-guided-image-colorization",
-    "https://huggingface.co/spaces/JeffreyXiang/TRELLIS","https://discord.com/invite/domoai","https://aistudio.google.com/live","https://huggingface.co/spaces/OAOA/InvSR","https://huggingface.co/spaces/MoonQiu/FreeScale","https://www.zarla.com/","https://www.hotbot.com/chat","https://suno.com/me",
-    "https://huggingface.co/spaces/artificialguybr/video-dubbing", "https://huggingface.co/spaces/lllyasviel/iclight-v2-vary","https://doodad.dev/pattern-generator/","https://sourcegraph.com/cody/chat","https://huggingface.co/spaces/franciszzj/Leffa","https://oo.ai/","https://x-doc.ai/","https://huggingface.co/spaces/osanseviero/gemini-coder",
-    "https://huggingface.co/spaces/akhaliq/anychat","https://huggingface.co/spaces/Qwen/QVQ-72B-preview","https://huggingface.co/spaces/stabilityai/stable-diffusion-3.5-large","https://huggingface.co/spaces/eswardivi/phi-4","https://huggingface.co/spaces/playgroundai/playground-v2.5","https://huggingface.co/spaces/llamameta/llama3.1-405B","https://huggingface.co/spaces/Qwen/Qwen2.5-Coder-demo",
-    "https://huggingface.co/spaces/Lightricks/LTX-Video-Playground","https://huggingface.co/spaces/LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct-Demo","https://huggingface.co/spaces/webml-community/text-to-speech-webgpu","https://t.me/gpt_lama_bot","https://www.hailuo.ai/","https://v0.dev/","https://www.whatmore.ai/studio","https://huggingface.co/spaces/tencent/Hunyuan3D-2","https://www.dzine.ai/",
-    "https://huggingface.co/spaces/deepseek-ai/deepseek-vl2-small","https://huggingface.co/spaces/Trudy/gemini-image-to-code","https://chat.deepseek.com/","https://backgrounderase.net/home","https://huggingface.co/spaces/webml-community/kokoro-webgpu","https://www.morphic.sh/","https://scira.app/","https://kagi.com/fastgpt","https://shapen.com/","https://alice.yandex.ru/chat/01953c1a-be79-4000-9e88-5177131e2739/",
-    "https://notedly.ai/dashboard","https://playground.ai.cloudflare.com/","https://huggingface.co/spaces/ASLP-lab/DiffRhythm","https://chat.akash.network/","https://www.sesame.com/research/crossing_the_uncanny_valley_of_voice#demo","https://www.imagineanything.ai/","https://huggingface.co/spaces/prs-eth/thera","https://www.openai.fm/","https://huggingface.co/spaces/starvector/starvector-1b-im2svg",
-    "https://huggingface.co/spaces/enzostvs/deepsite","https://huggingface.co/spaces/jasperai/Flux.1-dev-Controlnet-Upscaler","https://huggingface.co/spaces/nightfury/Image_Face_Upscale_Restoration-GFPGAN","https://auphonic.com/","https://wordpress.com/ai-website-builder/","https://t.me/askplexbot","https://digma.ai/","https://lightpdf.com/","https://dxgpt.app/","https://humanize-ai.click/",
-    "https://huggingface.co/spaces/nvidia/parakeet-tdt-0.6b-v2","https://app.youlearn.ai/","https://spinbot.com/paraphrasing-tool","https://puter.com/","https://www.eraser.io/ai","https://www.scribbr.com/paraphrasing-tool/","https://www.eraser.io/ai/uml-diagram-generator","https://huggingface.co/spaces/ByteDance/Dolphin","https://gptkit.ai/","https://huggingface.co/spaces/Stable-X/Hi3DGen","https://www.warp.dev/",
-    "https://www.wondera.ai/","https://ayesoul.com","https://scispace.com/","https://huggingface.co/spaces/llamameta/Grok-4-heavy-free","https://noiz.io/free-ai-tools/","https://huggingface.co/spaces/Qwen/Qwen3-MT-Demo","https://deep-seek-ai.ru/free-deepseek-chat/","https://gpt-chatbot.ru/openai-o3-mini","https://www.waveterm.dev/","https://cline.bot/","https://addons.mozilla.org/en-US/firefox/addon/polination-ai-chat/",
-    "https://github.com/Processori7/Poli_Sidebar","https://writify.ai/tool/","https://qoder.com/download","https://windsurf.com/download","https://www.trae.ai/","https://qwenlm.github.io/blog/qwen3-coder/","https://huggingface.co/spaces/Qwen/Qwen-Image","https://bagoodex.io/","https://www.design.com/ai-logo-generator","https://www.wolframalpha.com/","https://www.texttospeechpro.com/tts","https://x-minus.pro/ai",
-    "https://processor.alwaysdata.net/","https://www.minimax.io/audio/text-to-speech","https://www.meshy.ai/","https://app.reve.com/home","https://www.naturalreaders.com/online/","https://platform.decart.ai/","https://huggingface.co/spaces/spectral-labs/SGS-1","https://higgsfield.ai/create/video","https://ibrief.co/","https://chat.qwenlm.ai/","https://flowith.io/","https://deepai.org/chat","https://pi.ai/onboarding",
-    "https://grok.com/","https://llmarena.ru/","https://lmarena.ai/","https://stackoverflow.ai/","https://slea.ai/ru/app","https://notebooklm.google/","https://stitch.withgoogle.com/","https://aistudio.google.com/welcome","https://perchance.org/humanize-ai-text","https://fish.audio","https://github.com/google-gemini/gemini-cli","https://qwenlm.github.io/qwen-code-docs/en/","https://download.kodacode.ru/", 
-    "https://huggingface.co/spaces/black-forest-labs/FLUX.2-dev","https://www.coze.com/","https://huggingface.co/spaces/mrfakename/Z-Image-Turbo","https://nouswise.com/homepage","https://zenmux.ai/settings/chat?chatId=2547CHHiXMPi16898796","https://d37ozmhmvu2kcg.cloudfront.net/","https://copilot.microsoft.com/","https://algion.dev/","https://chatbotchatapp.com/","https://labs.google/fx/tools/flow","https://build.nvidia.com/models?filters=nimType%3Anim_type_preview","https://console.groq.com/home",
-    "https://github.com/marketplace?type=models","https://www.recraft.ai/blog/introducing-recraft-v4-design-taste-meets-image-generation","https://www.designarena.ai/","https://chat.cosverse.ai/","https://www.studley.ai/study-sets","https://lbrty.ai/","https://docs.google.com/videos/u/0/","https://github.com/JuliusBrussee/caveman","https://app.lumalabs.ai/"
-  ]
-  
+  var KNOWN_UNFRAMABLE = new Set([
+    'https://www.xdash.ai', 'https://xdash.ai',
+    'https://chat.openai.com', 'https://chatgpt.com',
+    'https://gemini.google.com', 'https://copilot.microsoft.com',
+    'https://claude.ai', 'https://poe.com', 'https://you.com',
+    'https://phind.com', 'https://kagi.com', 'https://huggingface.co',
+    'https://duck.ai/', 'https://www.perplexity.ai/',
+    'https://labs.perplexity.ai/', 'https://chat.tune.app/',
+    'https://chat.mistral.ai/chat', 'https://groq.com/',
+    'https://ya.ru/', 'https://t.me/EdyaAIrobot',
+    'https://chat.deepseek.com/', 'https://grok.com/',
+    'https://llmarena.ru/', 'https://lmarena.ai/',
+    'https://aistudio.google.com/live', 'https://venice.ai/chat',
+    'https://komo.ai/', 'https://oo.ai/', 'https://pi.ai/onboarding',
+    'https://suno.com/me', 'https://v0.dev/', 'https://www.hailuo.ai/',
+    'https://character.ai', 'https://elevenlabs.io/',
+    'https://www.craiyon.com/', 'https://gamma.app/',
+    'https://slidesgo.com/', 'https://puter.com/',
+    'https://www.warp.dev/', 'https://cline.bot/',
+    'https://copilot.microsoft.com/', 'https://chat.cosverse.ai/',
+    'https://app.lumalabs.ai/', 'https://chat.qwenlm.ai/',
+    'https://flowith.io/', 'https://deepai.org/chat'
+  ]);
+
+  function isUnframable(url) {
+    return KNOWN_UNFRAMABLE.has(url);
+  }
+
   copyOnRightClick.checked = JSON.parse(localStorage.getItem("copyOnRightClick")) || false;
+
+  // Middle-click copy (колёсико мыши)
+  document.addEventListener('mousedown', function (e) {
+    if (e.button !== 1) return;
+    var li = e.target.closest('li[data-website]');
+    if (!li) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var url = li.getAttribute('data-website');
+    navigator.clipboard.writeText(url).then(function () {
+      var orig = li.style.background;
+      li.style.background = '#4CAF50';
+      setTimeout(function () { li.style.background = orig; }, 400);
+    }).catch(function () {
+      var ta = document.createElement('textarea');
+      ta.value = url;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      var orig = li.style.background;
+      li.style.background = '#4CAF50';
+      setTimeout(function () { li.style.background = orig; }, 400);
+    });
+  }, true);
 
   // Функция для обновления состояния advancedSearch в localStorage
   function updateOpenOnAdvancedSearchState() {
@@ -227,7 +241,7 @@ function smoothScroll(target, duration) {
   function hideBlockedServices() {
     items.forEach(item => {
       const website = item.getAttribute('data-website');
-      if (blockSites.includes(website)) {
+      if (KNOWN_UNFRAMABLE.has(website)) {
         if (!canOpen.checked) {
           item.style.display = ""; // Показываем элемент
         } else {
@@ -808,34 +822,9 @@ function navigateSuggestions(direction) {
     const selectedItem = suggestions[currentSuggestionIndex];
     selectedItem.classList.add('selected');
     
-    // Прокручиваем контейнер к выбранному элементу
-    scrollToSelectedSuggestion(selectedItem);
     
     // Обновляем значение в поле ввода
     searchInput.value = suggestionsList[currentSuggestionIndex];
-  }
-}
-
-// Функция для прокрутки к выбранному элементу подсказки
-function scrollToSelectedSuggestion(selectedItem) {
-  if (!selectedItem || !searchSuggestions) return;
-  
-  const container = searchSuggestions;
-  const itemOffsetTop = selectedItem.offsetTop;
-  const itemHeight = selectedItem.offsetHeight;
-  const containerScrollTop = container.scrollTop;
-  const containerHeight = container.clientHeight;
-  
-  // Проверяем, находится ли элемент в видимой области
-  const itemBottom = itemOffsetTop + itemHeight;
-  const containerBottom = containerScrollTop + containerHeight;
-  
-  if (itemBottom > containerBottom) {
-    // Элемент ниже видимой области - прокручиваем вниз
-    container.scrollTop = itemOffsetTop + itemHeight - containerHeight + 5;
-  } else if (itemOffsetTop < containerScrollTop) {
-    // Элемент выше видимой области - прокручиваем вверх
-    container.scrollTop = itemOffsetTop - 5;
   }
 }
 
@@ -1396,35 +1385,28 @@ try {
     }
 
     var websiteDescriptionsRu = {
-      "https://duck.ai/": "Бесплатно: Claude3 Hiku, GPT-4o-mini, Llama3.1 70B, Mixtral 8x7B.",
+"https://duck.ai/": "Бесплатно: Claude3 Hiku, GPT-4o-mini, Llama3.1 70B, Mixtral 8x7B.",
       "https://thinkany.ai/": "Бесплатно можно использовать различные LLM, на сайте есть тёмная тема и нужна авторизация.",
-      "https://www.phind.com": "Phind LLM, бесплатная поисковая система, на сайте есть тёмная тема.",
-      "https://www.prefind.ai/": "Бесплатная поисковая система, доступны модели: Llama 3, Claude 3.",
       "https://www.blackbox.ai/": "Бесплатно: BlackBox AI LLM, на сайте есть тёмная тема.",
       "https://www.perplexity.ai/": "Бесплатная поисковая система, на сайте есть тёмная тема, использует GPT-3.5 Turbo",
-      "https://chat.tune.app/": "Бесплатно досткпны несколько LLM, а остальные доступные после регистрации, на сайте есть тёмная тема.",
       "https://labs.perplexity.ai/": "Бесплатно доступны несколько моделей LLM, на сайте есть тёмная тема.",
       "https://jeeves.ai/": "Бесплатная поисковая система, доступны модели: Jeeves LLM, на сайте есть тёмная тема.",
       "https://bagoodex.io/": "Бесплатная поисковая система, использует GPT-4o, BaGooDex чат и другие инструменты, доступна тёмная тема.",
       "https://www.aiuncensored.info": "Бесплатно можно использовать: GPT-3.5, на сайте есть тёмная тема.",
-      "https://huggingface.co/spaces/Qwen/Qwen2-72B-Instruct": "Бесплатно: Qwen2-72B-Instruct.",
       "https://chat.tinycms.xyz:3002/#/chat": "Доступны: GPT-4 и другие модели бесплатно, но с ограничениями, на сайте есть тёмная тема.",
       "https://you.com/search?q=hi&fromSearchBar=true&tbm=youchat": "Бесплатно: You Chat LLM, GPT-4o (с ограничениями), на сайте есть тёмная тема.",
       "https://finechat.ai/ru/app": "Бесплатно: GPT-4o (с ограничениями).",
-      "https://gpt-4o.biz/playground": "Бесплатно: GPT-4o (с ограничениями).",
       "https://gpt4o.so/ru/app": "Бесплатно: GPT4o (с ограничениями).",
       "https://iask.ai/": "Бесплатная поисковая система и другие инструменты ИИ.",
       "https://www.popai.pro/": "Бесплатно: GPT и другие инструменты ИИ, но требуется вход в систему и у этого сервиса есть ограничения.",
       "https://useadrenaline.com/": "Бесплатный ИИ для программистов, позволяет анализировать репозитории на GitHub.",
       "https://gpt.h2o.ai/": "Бесплатные LLM.",
-      "https://chat.lmsys.org/": "Большая платформа для тестирования различных ИИ, но некоторые имеют ограничения, на сайте есть тёмная тема, а также возможно использовать несколько LLM одновременно.",
       "https://chat.deepseek.com/": "ИИ для программистов, отлично справляется с написанием кода, но требуется регистрация.",
-      "https://chatgate.ai/gpt4/": "Бесплатно: ChatGPT-4 и другие инструменты, но с ограничениями.",
+      "https://chatgate.ai": "Бесплатно: ChatGPT-4 и другие инструменты, но с ограничениями.",
       "https://agentgpt.reworkd.ai/ru": "Это сервис, который может находить решения ваших проблем, для этого нужно напишисать, что вам нужно, и он предложит варианты, однако функционал доступен только после регистрация, а также на сайте есть тёмная тема.",
       "https://smartbuddy.ru/models/gpt-4-omni": "Бесплатно GPT-4o, с ограничениями.",
       "https://andisearch.com/": "Бесплатная поисковая система.",
       "https://anonchatgpt.com/": "Бесплатно GPT-3.5, на сайте есть тёмная тема.",
-      "https://aoyo.ai/": "Бесплатная поисковая система.",
       "https://pi.ai/talk": "Бесплатный ИИ-ассистент.",
       "https://gpt-chatbot.ru/chat-gpt-ot-openai-dlya-generacii-teksta": "Бесплатно: Чат-бот",
       "https://devv.ai/": "ИИ для программистов, включает чат с LLM: Gemeni 1.5 и Claude 3 (требуется регистрация), веб-поиск и работа с GitHub, но требуется вход в систему.",
@@ -1439,11 +1421,11 @@ try {
       "https://pbot2.bus1.skybyte.me/#/chat/1002": "Бесплатный чат, но нет SSL-сертификата.",
       "https://chataibot.ru/app/free-chat": "Бесплатный чат (GPT-3.5 Turbo).",
       "https://chat.mistral.ai/chat": "Бесплатный чат Mistral (требуется вход в систему)",
-      "https://yep.com/chat/": "Бесплатный поиск и чат Yep.",
+      "https://yep.com": "Бесплатный поиск",
       "https://share.wendaalpha.net": "Бесплатно GPT-4o, на сайте есть тёмная тема, но отвечает только на китайском.",
       "https://groq.com/": "Бесплатный GPT, блокирует запросы из РФ.",
       "https://ya.ru/": "Бесплатно: Yandex GPT",
-      "https://talkai.info/ru/": "Бесплатно Gpt-3.5, с ограничениями, на сайте есть тёмная тема.",
+      "https://talkai.info/chat/": "Бесплатно несколько LLM, с ограничениями, на сайте есть тёмная тема.",
       "https://ai.mitup.ru/chatgpt-free": "Бесплатный чат",
       "https://www.anytopic.io": "Бесплатные модели Claude, но требуется регистрация.",
       "https://codepal.ai/": "Бесплатный чат, но требуется вход в систему.",
@@ -1525,7 +1507,6 @@ try {
       "https://textbot.ru/":"TextBot — нейросеть которая поможет сгенерировать, дополнить, улучшить или отрерайтить текст на любую тему.",
       "https://www.seaart.ai/ai-tools/ai-face-swap":"Инструмент для объединения вашего лица с различными художественными стилями и сценами, он поддерживает обмен лицами как в видео, так и в изображениях, что облегчает создание уникального и развлекательного контента.",
       "https://llmplayground.net/":"Сайт с тёмной темой оформления и большим выбором LLM.",
-      "https://www.farfalle.dev":"Бесплатный поисковый движок, с тёмной темой оформления, доступны GPT-3.5 Turbo и LLAMA 3-70B.",
       "https://www.pizzagpt.it/en":"Бесплатный Chat GPT-3.5 Turbo, сайт с тёмной темой оформления.",
       "https://www.turboseek.io":"Бесплатная поисковая система с ИИ, используются LLAMA 3-8B или Mixtrai 8x7B.",
       "https://www.xdash.ai":"Бесплатная поисковая система, использует ИИ для улучшения результатов поиска.",
@@ -1592,7 +1573,7 @@ try {
       "https://melody.ml/":"Сервис позволяет легко разделить аудиодорожки с помощью машинного обучения бесплатно, при этом автоматически изолируйте вокал и генерируйте стебы для ремиксов песен",
       "https://venice.ai/chat":"Сервис с бесплатный планом, который позволяет общаться с раличными LLM на любые темы",
       "https://deepai.org/chat":"Сервис с бесплатный планом, который позволяет общаться с раличными LLM на любые темы",
-      "https://lmarena.ai/":"Сервис бесплатно позволяет общаться с раличными LLM на любые темы и оценивать их эффективность",
+      "https://lmarena.ai/":"LLM арена, сервис позволяет общаться с раличными LLM на любые темы и оценивать их эффективность",
       "https://studyable.app/":"Сервис с бесплатным планом, который поможет справиться с любым домашним заданием",
       "https://huggingface.co/chat/":"Сервис позволяет общаться с различными LLM",
       "https://app.giz.ai/assistant?mode=chat":"Сервис позволяет общаться с различными LLM",
@@ -1606,7 +1587,6 @@ try {
       "https://minitoolai.com/":"Сервис, который предоставляет доступ к нескольким полезным сервисам с ИИ в том числе и GPT-4o",
       "https://komo.ai/":"Бесплатная поисковая система с ИИ, имеет дополнительные платные функции",
       "https://heybro.ai/web":"Бесплатный доступ к GPT-4o-mini",
-      "https://kingnish-opengpt-4o.hf.space/?__theme=dark":"Сервис позволяет общаться с GPT-4o, генерировать видео и картинки",
       "https://pythonspath.ru/gpt4o":"Сервис позволяет использовать GPT-4o",
       "https://huggingface.co/spaces/kayfahaarukku/fufufafa-makan-brem":"Бесплатный генератор изображений высокого качества",
       "https://www.genmo.ai/play":"Бесплатный генератор видео, нобходима авторизация",
@@ -1629,7 +1609,7 @@ try {
       "https://www.photoroom.com/tools":"Набор инструментов для обработки фото",
       "https://llamaocr.com/":"Бесплатная нейросеть для распознавания текста на фото",
       "https://gptengineer.app/":"Агент с открытым исходным кодом, который может помочь в создании кода",
-      "https://www.yeschat.ai/ru/gpts-ZxWyZIKg-EE-GPT":"GPT эксперт по электротехнике на основе ИИ",
+      "https://www.yeschat.ai/":"Сервис предоставвляет бесплатный доступ к LLM",
       "https://www.rubbrband.com/":"Бесплатный генератор изображений и видео, который позволяет последовательно создавать изображения в уникальных стилях, есть лимит",
       "https://huggingface.co/spaces/AI4Editing/MagicQuill":"Бесплатный редактор изображений с ИИ",
       "https://iki.ai":"Платформа для хранения и организации знаний",
@@ -1655,7 +1635,7 @@ try {
       "https://www.zarla.com/":"Конструктор веб-сайтов",
       "https://huggingface.co/spaces/OAOA/InvSR":"Сервис для улучшения изображений",
       "http://multimodalart-stable-cascade.hf.space/":"Бесплатный сервис , который позволяет генерировать изображения",
-      "https://www.hotbot.com/chat":"Бесплатный сервис для общения с ИИ",
+      "https://www.hotbot.com":"Бесплатный сервис для общения с ИИ",
       "https://free-ai-chat.com/en/model/o1-mini":"Бесплатный сервис для общения с различными LLM",
       "https://suno.com/me":"Бесплатный сервис для генерации музыки",
       "https://huggingface.co/spaces/MoonQiu/FreeScale":"Бесплатный сервис для генерации изображений",
@@ -1664,22 +1644,19 @@ try {
       "https://huggingface.co/spaces/artificialguybr/video-dubbing":"Нейросеть может полностью переводить видеоролики и фильмы, сохраняя подлинные голоса (при необходимости редактируя отдельные фрагменты)",
       "https://www.clipfly.ai/":"Бесплатный видеогенератор с искусственным интеллектом и платформа для создания, идеально подходящая для пользователей, не имеющих предыдущего опыта работы с видео",
       "https://huggingface.co/spaces/lllyasviel/iclight-v2-vary":"ИИ для замены фона и освещения на фото",
-      "https://sourcegraph.com/cody/chat":"Бесплатный сервис для общения с ИИ, 200 запросов в месяц, требуется регистрация",
-      "https://snapedit.app/ru/remove-object/upload":"Бесплтаный сервис для редактирования изображений и удаления лишних объектов",
+      "https://snapedit.app/":"Бесплтаный сервис для редактирования изображений и удаления лишних объектов",
       "https://huggingface.co/spaces/franciszzj/Leffa":"ИИ-примерочная — бесплатная и с максимально понятным интерфейсом",
       "https://huggingface.co/spaces/TencentARC/InstantMesh":"Бесплатная нейросеть от Tencent, которая превращает изображение в 3D-объект",
       "https://oo.ai/":"Бесплатная поисковая система с ИИ",
       "https://www.drawdb.app/editor":"Это надёжный и удобный редактор связей между объектами базы данных (DBER) прямо в вашем браузере",
       "https://dictation.io/":"инструмент распознавания речи для Google Chrome, который транскрибрует ваши произнесенные слова на другой язык в режиме реального времени",
       "https://www.fillout.com/ai-survey-maker":"Бесплатный инструмент, который позволяет быстро и легко создавать профессиональные опросы с помощью искусственного интеллекта",
-      "https://www.warp.dev/warp-ai":"Терминал для разработчиков, который теперь интегрирует ИИ для отладки, поиска команд и решения проблем",
       "https://x-doc.ai/":"ИИ для перевода книг и документов на 108 языков, требуется регистрация",
       "https://fokus.am":"Генератор презентаий с бесплатным планом, доступ можно получить только по ссылке, экспорт в PPTX не доступен",
       "https://www.gptpanda.io/":"Помощник ChatGPT для Slack, основываясь на последних моделях OpenAI, GptPanda предлагает неограниченное количество запросов, а также имеет бесплатный стартовый план",
       "https://riverside.fm/transcription":"ИИ-инструмент для транскрибирования видео и подкастов",
       "https://huggingface.co/spaces/osanseviero/gemini-coder":"ИИ для создания различных приложений на React",
       "https://huggingface.co/spaces/akhaliq/anychat":"Сервис предоставляет доступ к большому количеству языковых моделей, поэтому может загружаться довольно долго",
-      "https://huggingface.co/spaces/Qwen/QVQ-72B-preview":"Сервис позволяет общаться с QVQ-72B-preview",
       "https://huggingface.co/spaces/stabilityai/stable-diffusion-3.5-large":"Сервис позволяет использовать Stable-diffusion-3.5-large для генерации изображений",
       "https://huggingface.co/spaces/eswardivi/phi-4":"Сервис позволяет общаться с Phi-4",
       "https://huggingface.co/spaces/playgroundai/playground-v2.5":"Очень быстрый генератор изображений по запросу",
@@ -1689,7 +1666,7 @@ try {
       "https://www.whatmore.ai/studio":"Инструмент для создания видео на основе ИИ, предназначенный для брендов электронной коммерции для быстрого создания высококачественных маркетинговых видео, требуется регистрация",
       "https://huggingface.co/spaces/LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct-Demo":"EXAONE 3.5: Набор инструктивных моделей от LG AI, это ссылка на универсальную 7.8B модель",
       "https://huggingface.co/spaces/webml-community/text-to-speech-webgpu":"Данный сервис позволяет переводить текст в речь",
-      "https://chat.qwenlm.ai/":"Сервис позволяет использовать 8 моделей QwenLM для общения, требуется авторизация",
+      "https://chat.qwenlm.ai/":"Сервис позволяет использовать различные модели QwenLM, требуется авторизация",
       "https://t.me/gpt_lama_bot":"Бот в Телеграм, который позволяет общаться с несколькими моделями LLM, включая GPT4o",
       "https://consensus.app/":"Поисковая система на основе искусственного интеллекта, которая помогает вам найти основанные на фактических данных ответы на ваши исследовательские вопросы",
       "https://bexi.ai/":"Сервис предлагает два основных инструмента: AI Humanizer для преобразования текста, созданного ИИ, в естественный, похожий на человека язык, и AI Detector для обнаружения контента, созданного AI, с высокой точностью",
@@ -1720,13 +1697,10 @@ try {
       "https://www.morphic.sh/":"Бесплатная поисковая система с ИИ",
       "https://scira.app/":"Бесплатная поисковая система с ИИ",
       "https://kagi.com/fastgpt":"Бесплатная поисковая система с ИИ",
-      "https://getliner.com/":"Бесплатная поисковая система с ИИ, требуется авторизация",
       "https://www.xdash.ai/":"Бесплатная поисковая система с ИИ",
       "https://correkt.ai/":"Бесплатная поисковая система с ИИ",
-      "https://compute.hyper.space/":"Довольно интересный проект, который совмещает различных ИИ агентов с поисковой системой",
       "https://hika.fyi/":"Бесплатная поисковая система с ИИ",
       "https://shapen.com/":"Загрузите изображение — ИИ сам соберёт детализированную 3D-модель",
-      "https://www.grok3ai.live/":"Сервис предоставляет доступ к GROK 3 от xAI",
       "https://app.invesst.ai/login":"ИИ-сервис для ИНВЕСТИЦИОННЫХ исследований — Invesst буквально «DeepResearch для инвестиций», объединяющий в себе мощь поиска с помощью ChatGPT и Perplexity",
       "https://neonpangolin.github.io/FilePhish/":"Сервис позволяет находить файлы на веб-сайтах по ключевым словам, а также БД и ПО",
       "https://www.yeschat.ai/features/grok-3":"Сервис предоставляет доступ к GROK 3 от xAI",
@@ -1793,13 +1767,13 @@ try {
       "https://fragments.e2b.dev/":"Сервис позволяет создавать свои приложения",
       "https://lightpdf.com/":"Сервис для работы с PDF, позволяет добавлять текст, рисовать и многое другое",
       "https://www.bohrium.com/":"Поисковая система с ИИ",
-      "https://ayle.chat/":"Поисковая система с различными LLM, требуется регистрация, есть темная тема оформления",
+      "https://ayle.chat/":"Поисковая система с различными LLM, требуется регистрация, есть тёмная тема оформления",
       "https://onlook.com/":"Аналог Cursor для ДИЗАЙНЕРОВ, позволяет экономить время",
       "https://dxgpt.app/":"Microsoft выпустила чат-бота DxGPT для распознавания заболеваний по симптомам, для медосмотра нужно вбить пол, возраст и проблемы, которые вас беспокоят",
       "https://chat.aitopia.ai/":"Сервис предоставляет доступ к чату с LLM, генерации изображений и не только, ограничение на 10 запросов в день",
       "https://chat.z.ai/":"Китайская команда представила локальную модель GLM-4-32B, по уровню она спокойно держится рядом с Sonnet 3.5, но полностью автономна",
       "https://humanize-ai.click/":"Бесплатный сервис Humanize поможет пройти антиплагиат, убрав следы ИИ",
-      "https://pad.ws/":"Сервис превращающий IDE в dashboard, требуется авторизация, есть темная тема оформления",
+      "https://pad.ws/":"Сервис превращающий IDE в dashboard, требуется авторизация, есть тёмная тема оформления",
       "https://chat.mcpcore.xyz/":"Сервис предоставляет доступ к различным LLM, требуется авторизация, есть тёмная тема оформления",
       "https://www.spoonfeed.codes/":"Сервис превращает весь репозиторий или директорию проекта в код Markdown, есть ограничения, требуется авторизация",
       "https://svgartista.net/":"Анимируем свой логотип, иконки и любой другой SVG-файл",
@@ -1811,8 +1785,8 @@ try {
       "https://www.fluig.cc/home":"Сервис для создания диаграмм и не только из любого документа",
       "https://huggingface.co/spaces/nvidia/parakeet-tdt-0.6b-v2":"Модель для распознавания речи от Nvidia",
       "https://anara.com/":"Сервис для подробного ресёрча по любым задачам",
-      "https://chatsandbox.com/characters":"Сервис предоставляет доступ к различным LLM, есть темная тема оформления",
-      "https://beta.lmarena.ai/?mode=direct":"Сервис предоставляет доступ к различным LLM",
+      "https://chatsandbox.com/characters":"Сервис предоставляет доступ к различным LLM, есть тёмная тема оформления",
+      "https://beta.lmarena.ai/?mode=direct":"LLM арена, сервис предоставляет доступ к различным LLM",
       "https://puter.com/":"Виртуальный ПК",
       "https://lambda.chat/":"Сервис предоставляет доступ к множеству LLM",
       "https://www.eraser.io/ai":"Второй пилот технического проектирования, который способен оптимизировать рабочие процессы технического проектирования для разработчиков и инженерных команд",
@@ -1851,16 +1825,15 @@ try {
       "https://resumly.ai/":"Генератор резюме под конкретную работу, есть бесплатный план, требуется авторизация",
       "https://hatchcanvas.com/":"В данном сервисе можно генерировать дизайны, приложения, сайты, макеты, презентации и тд",
       "https://upmash.fun/":"Сервис бесплатно объединяет две песни по выбору — достаточно загрузить их",
-      "https://www.warp.dev/":"Приложение со встроенным ИИ агентом, есть бесплатный план, требуется загрузка, установка и авторизация",
+      "https://www.warp.dev/":"Приложение со встроенным ИИ агентом, есть бесплатный план на 150 запросов в месяц (запросы автоматизированы), требуется загрузка, установка и авторизация",
       "https://huggingface.co/spaces/Stable-X/Hi3DGen":"Сервис генерирует 3D модель по фото",
       "https://alphaxiv.org/assistant":"Агент ищет релевантные статьи по вашему запросу, анализирует их и помогает в исследованиях, работает с научными архивами, требуется авторизация",
       "https://www.publishstudio.one/creator-kit":"Различные инструменты для работы с изображениями, включая удаление фона",
       "https://www.wondera.ai/":"Аналог Suno, требуется авторизация",
-      "https://deepguardtech.com/app":"Сервис анализирует каждый пиксель видео, проверяет метаданные и выдаёт подробный отчёт о вероятности GenAI, проверка на генерацию ИИ",
+      "https://deepguardtech.com/":"Сервис анализирует каждый пиксель видео, проверяет метаданные и выдаёт подробный отчёт о вероятности GenAI, проверка на генерацию ИИ",
       "https://pdf2zh.com/":"Сервис для быстрого перевода PDF документов на различные языки",
       "https://ayesoul.com/":"Поисковая система с ИИ",
       "https://products.aspose.ai/total/":"Сервис предоставляет множество инструментов для работы с файлами",
-      "https://legacy.lmarena.ai/":"Сервис предоставляет доступ к множеству LLM",
       "https://godmode.space/":"Godmode — это инструмент для автоматизации повторяющихся задач и работы с данными",
       "https://examful.ai/app":"Сервис для помощи с задачами для школьников и студентов",
       "https://scispace.com/":"Поисковик с ИИ для учёных, находит статьи на разные темы",
@@ -1878,7 +1851,7 @@ try {
       "https://gpt-chatbot.ru/openai-o3-mini":"Сервис предоставляет доступ к различным LLM",
       "https://webos.live/":"Достаточно интересный проект операциионной системы с внедренным ИИ агентом, проект еще разрабатывается, некоторые функции могут не работать",
       "https://huggingface.co/spaces/Qwen/Qwen3-MT-Demo":"Переводчик от Qwen",
-      "https://pollinations.ai/":"Бесплатный сервис, который предоставляет доступ к различным LLM, доступ к генерации фото и чату можно получить сразу на главной странице",
+      "https://pollinations.ai/":"Бесплатный сервис, который предоставляет доступ к различным LLM, доступ к генерации фото и чату можно получить сразу на главной странице, предоставляет бесплатные API",
       "https://writify.ai/tool/":"Множество бесплатных инструментов с ИИ",
       "https://faces.app/":"Генератор сайтов",
       "https://www.waveterm.dev/":"Продвинутый терминал для разработчиков с интегрированным браузером и ИИ",
@@ -1893,7 +1866,7 @@ try {
       "https://huggingface.co/spaces/Qwen/Qwen-Image":"Новая бесплатная генеративная модель Qwen Image выдаёт как гиперреалистичные фото, так и стильные постеры, арты и даже полноценные страницы комиксов",
       "https://www.trydoco.com/#Pricing":"DOCO сочетает в себе Grammarly, Google Translate, Co-Pilot и многое другое для работы с текстом и документами, бесплатный план ограничен, требуется регистрация",
       "https://www.zeroregai.com":"Сервис предоставляет бесплатный доступ к множеству LLM",
-      "https://www.design.com/ai-logo-generator":"Сервис включает в себя множество инструментов с ИИ, требуется авторизация",
+      "https://www.design.com/":"Сервис включает в себя множество инструментов с ИИ, требуется авторизация",
       "https://www.wolframalpha.com/":"Сервис для решения математических задач",
       "https://www.kimi.com/kimiplus/cvvm7bkheutnihqi2100":"Генератор презентаций от Kimi AI, требуется авторизация",
       "https://revast.xyz/":"Сервис для создания интерактивных учебников, есть бесплатный план, требуется авторизация",
@@ -1961,7 +1934,7 @@ try {
       "https://github.com/blader/humanizer-ai-text":"Скилл для очелавечивания ИИ текста",
       "https://www.airbrush.ai/":"Сервис для генерации изображений",
       "https://www.k2think.ai/":"Сервис предоставляет доступ к Kimi K2",
-      "https://build.nvidia.com/":"Сервис предоставляет доступ к различным LLM",
+      "https://build.nvidia.com/models?filters=nimType%3Anim_type_preview":"Сервис предоставляет доступ к различным LLM",
       "https://console.groq.com/home":"Сервис предоставляет доступ к различным LLM моделям",
       "https://github.com/marketplace?type=models":"Сервис предоставляет доступ к различным LLM моделям от разных компаний, есть бесплатные модели, а также модели с платным доступом",
       "https://arena.ai/":"Сервис предоставляет доступ к различным LLM моделям от разных компаний",
@@ -1982,8 +1955,20 @@ try {
       "https://saveto.ai/":"Множество бесплатных сервисов с ИИ, среди них переводчик, загрузчик видео, сумаризатор текста и т.д.",
       "https://faceai.art/face-swap/":"Сервис для замены лиц на фотографиях и видео",
       "https://aihumanizer.work/ru/bypass-ai":"Сервис для очеловечивания текста",
-      "https://designarena.ai/":"Сервис позволяет создавать дизайны, логотипы и не только с помощью ИИ, требуется авторизация"
-  };   
+      "https://designarena.ai/":"Сервис позволяет создавать дизайны, логотипы и не только с помощью ИИ, требуется авторизация",
+      "https://omniroute.online/":"Сервис позволяет создать единый API и интегрировать в него различных провайдеровLLM",
+      "https://github.com/pewdiepie-archdaemon/odysseus":"Альтернатива Cersor с множеством функций и параметров",
+      "https://app.notion.com/":"Сервис позволяет создавать заметки, базы данных, возможность использовать Claude, есть бесплатный план, требуется авторизация",
+      "https://www.stackai.com/":"Сервис позволяет бесплатно запускать множество ИИ агентов",
+      "https://askai.free/":"Сервис предоставляет дуступ к различным LLM моделям, есть бесплатный план, требуется авторизация",
+      "https://free.ai/":"Сервис предоставляет доступ к различным инструментам с ИИ",
+      "https://theoldllm.vercel.app/":"Сервис предоставляет доступ к различным LLM моделям",
+      "https://veoaifree.com/":"Сервис позволяет бесплатно генерировать видео",
+      "https://uncensored.chat/":"ИИ чат без цензуры",
+      "https://www.free-ai-online.com/":"Сервис предоставляет доступ к различным LLM моделям",
+      "https://gptfree.com/":"Сервис предоставляет доступ к различным LLM моделям",
+      "https://zcode.z.ai/en":"Бесплатная IDE со встроенными моделями от Z.ai"
+  };    
     
   function applyTheme(backgroundColor, textColor, liColor, liTextColor, tooltipBgColor, fontFamily, headingFontSize, itemFontSize, tooltipFontSize) { 
   try {

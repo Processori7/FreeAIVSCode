@@ -13,6 +13,12 @@ The following functions are available in this menu:
 - Checkbox "Hide services that cannot be opened in the sidebar" - allows you to immediately hide services that cannot be opened in the sidebar, while the search works on all elements, regardless of whether they are hidden or not.  
 - The settings menu now shows the total number of free services  
 
+## Middle-click copy
+Middle-click (scroll wheel) on any service copies its URL to clipboard. Green flash confirms the copy.
+
+## Smart iframe detection
+Known unframable sites (ChatGPT, Gemini, Claude, Poe, etc.) are automatically detected and hidden when "Show only services that can be opened in side panel" is active. Search still works on all items regardless of visibility.
+
 ## Section Menu  
 This menu is located in the center on the right side, and opens when you press the "📑" button.  
 The purpose of this menu is to provide quick navigation through sections. To do this, simply click on the desired section with the left mouse button, after which scrolling to it will automatically begin.  
