@@ -100,7 +100,7 @@ class FreeAIToolsViewProvider {
             const styleCss = fs.readFileSync(styleCssPath.fsPath, 'utf8');
             const newYearCss = fs.readFileSync(newYearCssPath.fsPath, 'utf8');
             return popupHtml.replace(/(href|src)="([^"]+)"/g, `$1="${resourceRoot}/$2"`)
-                .replace('</head>', `<style>${styleCss}\n${newYearCss}</style></head>`)
+                .replace('</head>', `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} https: data:; style-src ${webview.cspSource} 'unsafe-inline'; font-src ${webview.cspSource}; script-src 'unsafe-inline'; connect-src ${webview.cspSource} https://translate.googleapis.com https://api.mymemory.translated.net">\n<style>${styleCss}\n${newYearCss}</style></head>`)
                 .replace('</body>', `<script>\n(function() {\nconst vscode = acquireVsCodeApi();\n${popupJs.replace(/window.open/g, 'vscode.postMessage')}\n})();\n</script></body>`);
         }
         catch (error) {
